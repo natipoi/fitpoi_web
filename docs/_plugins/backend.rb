@@ -17,16 +17,15 @@ require 'httpclient'
 # puts response.status #=> 200
 # puts response.body #=> {"id": 1, "text": "todo"}
 
-module Jekyll
-    class EnvironmentVariablesGenerator < Generator
-        def generate(site)
-            site.config['env'] = {}
-            ENV.each do |key, value|
-                site.config['env'][key] = value
-            end
-        end
-    end
-end
+# module Jekyll
+#     class EnvironmentVariablesGenerator < Generator
+#         def generate(site)
+#             site.config['env'] = {}
+#             site.config['env']["TEST"] = "testだよーん"
+
+#         end
+#     end
+# end
 
 
 

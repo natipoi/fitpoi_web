@@ -21,10 +21,10 @@ textarea[id=body]{width: 100%;}
             <div class="heading-box">
                 <h1>お問い合わせ</h1>
             </div>
-            <form>
+            <form id="form">
             <div class="mail-box">
                 <label id="mail-label">メールアドレス</label>
-                <input type="email" placeholder="sample@example.com">
+                <input type="email" id="email-input" placeholder="sample@example.com">
             </div>
 
             <div class="heading-box">
@@ -39,8 +39,20 @@ textarea[id=body]{width: 100%;}
                 <button type="button" id="submit-button">お問い合わせを送信する</button>
             </div>
             </form>
-
-
-
-
         </main>
+
+
+        <script>
+            $("#submit-button").on("click", function(){
+                const url = 'https://hooks.slack.com/services/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';
+                const data = {
+                    email: $("#email-input").val(),
+                    message: $("#body").val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url:  url,
+                    data: `payload=${JSON.stringify(data)}`
+                });
+            })
+        </script>
