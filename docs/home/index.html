@@ -1,6 +1,25 @@
 ---
 layout: layout
 ---
+<style>
+    #insta-hashtag {padding: 20px;}
+    #insta-box {background-color: #fff; }
+    #sns-icon {display: flex; justify-content:center; list-style: none; font-size: 1.8rem; padding: 30px 0; }
+    #sns-icon li a {font-family: "Font Awesome 5 Brands"; font-weight: 900; display: block;text-align: center; width: 100px;}
+    #insta::before {content: '\f16d'; }
+    #fb::before {content: '\f39e';}
+    #twitter::before {content: '\f099';}
+
+    #insta-images-wrap {position: relative;white-space: nowrap; overflow-x: auto;}
+    #insta-images {display: flex; flex-wrap: nowrap;height: 250px; margin-bottom: 0; list-style: none; transform: translateX(calc((100% - 250px)/2)); transition: transform 0.5s;}
+    #insta-images li {width: 250px;height: 250px;flex-shrink: 0;flex-grow: 0;}
+    .insta-images-wrap-arrow {position: absolute;top:0;bottom:0; width: calc((100% - 250px)/2); background: rgba(255, 255, 255, 0.8);z-index: 100;}
+    .arrow-left {left:0; opacity: 0.0;}
+    .arrow-right {right: 0;}
+    .arrow-left::before, .arrow-right::before{font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; color: #969594}
+    .arrow-left::before {content: "\f104"; }
+    .arrow-right::before {content: "\f105"; }
+</style>
         <main>
             <!-- main visual -->
             <section>
@@ -18,7 +37,7 @@ layout: layout
                 <div class="app-feature">
                     <!-- app's image-->
                     <div class="app-image">
-                        <img src="phone.png" width="100%">
+                        <img src="sp1.jpeg" width="100%">
                     </div>
                     <!-- app's description-->
                     <div class="app-description">
@@ -38,7 +57,7 @@ layout: layout
                 <div class="app-feature">
                     <!-- app's image-->
                     <div class="app-image">
-                        <img src="phone.png" width="100%">
+                        <img src="sp2.jpeg" width="100%">
                     </div>
                     <!-- app's description-->
                     <div class="app-description">
@@ -58,7 +77,7 @@ layout: layout
                 <div class="app-feature">
                     <!-- app's image-->
                     <div class="app-image">
-                        <img src="phone.png" width="100%">
+                        <img src="sp3.jpeg" width="100%">
                     </div>
                     <!-- app's description-->
                     <div class="app-description">
@@ -87,19 +106,69 @@ layout: layout
                     <p class="p4">#fitpoi</p>
                 </div>
                 <div id="insta-images-wrap">
+                    <span class="insta-images-wrap-arrow arrow-left tap-arrow" attr="left"></span>
+                    <span class="insta-images-wrap-arrow arrow-right tap-arrow" attr="right"></span>
                     <ul id="insta-images">
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
+                        <li id="first-insta-image"><a href="https://www.instagram.com/fitpoi_app/"><img src="insta/insta1.jpg" width="100%"></a></li>
+                        <li><a href="https://www.instagram.com/fitpoi_app/"><img src="insta/insta2.jpg" width="100%"></a></li>
+                        <li><a href="https://www.instagram.com/fitpoi_app/"><img src="insta/insta3.jpg" width="100%"></a></li>
                     </ul>
                 </div>
                 <ul id="sns-icon">
-                    <li><a href="" id="insta"></a></li>
-                    <li><a href="" id="fb"></a></li>
-                    <li><a href="" id="twitter"></a></li>
+                    <li><a href="https://www.instagram.com/fitpoi_app/" id="insta"></a></li>
+                    <li><a href="https://www.facebook.com/fitpoi" id="fb"></a></li>
+                    <li><a href="/" id="twitter"></a></li>
                 </ul>
             </section>
 
         </main>
+        <script>
+            var now = 1
+            let imageNum = $("#insta-images").children().length
+            $(".tap-arrow").on("click", function(){
+
+                var attr = $(this).attr("attr")
+                if (attr === "left"){
+                    if (now === imageNum ){
+                        $('.arrow-right').css("opacity", "1.0")
+                    }
+                } else {
+                    if (now === 1 ){
+                        $('.arrow-left').css("opacity", "1.0");
+                    }
+                }
+
+                var nowPosi = $("#insta-images").css("transform")
+                nowPosi = nowPosi.split('(')[1];
+                nowPosi = nowPosi.split(')')[0];
+                var x = nowPosi.split(', ')[4];
+                var instaWidth = $("#first-insta-image").width()
+
+                x = attr === "right" ? - (instaWidth - parseInt(x)): instaWidth + parseInt(x);
+                var slide = true
+                if (attr === "right" && now === imageNum) {
+                    slide = false
+                } else if (attr === "left" && now === 1) {
+                    slide = false
+                }
+                if (slide) {
+                    $("#insta-images").css({
+                        transform: `translateX(${x}px)`
+                    })
+                    if (attr === "right"){
+                        now += 1
+                        if (now === imageNum ){
+                           $('.arrow-right').css("opacity", "0.0");
+                        }
+                    } else {
+                        now -= 1
+                        if (now === 1 ){
+                           $('.arrow-left').css("opacity", "0.0");
+                        }
+                    }
+                    
+                }
+                
+
+            })
+        </script>
