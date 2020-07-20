@@ -41,15 +41,14 @@ textarea[id=body]{width: 100%;}
         </main>
         <script>
 
-            $("#form").submit(function(e){
-                console.log("stary")
+            $("#submit-button").on("click", function(){
                 e.preventDefault();
-                var action = $(this).attr("action");
+                var action = $("#form").attr("action");
                 $.ajax({
                 type: "POST",
                 url: action,
                 crossDomain: true,
-                data: new FormData(this),
+                data: new FormData($("#form")),
                 dataType: "json",
                 contentType: "multipart/form-data",
                 processData: false,
@@ -62,7 +61,10 @@ textarea[id=body]{width: 100%;}
                 }).fail(function() {
                     alert('An error occurred please try again later.')
                 });
-                });
+
+            })
+
+
         </script>
 
 
