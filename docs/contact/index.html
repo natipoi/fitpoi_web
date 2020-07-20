@@ -40,11 +40,9 @@ textarea[id=body]{width: 100%;}
             </form>
         </main>
         <script>
-            $("#submit-button").on("click", function(){
-                print("tappde")
-            })
+
             $("#form").submit(function(e){
-                print("stary")
+                console.log("stary")
                 e.preventDefault();
                 var action = $(this).attr("action");
                 $.ajax({
