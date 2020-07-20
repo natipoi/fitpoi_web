@@ -40,6 +40,9 @@ textarea[id=body]{width: 100%;}
             </form>
         </main>
         <script>
+            $("#submit-button").on("cliclk", function(){
+                print("tappde")
+            })
             $("#form").submit(function(e){
                 print("stary")
                 e.preventDefault();
