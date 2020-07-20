@@ -48,7 +48,7 @@ textarea[id=body]{width: 100%;}
                 type: "POST",
                 url: action,
                 crossDomain: true,
-                data: new FormData($("#form")),
+                data: new FormData($("#form").get(0)),
                 dataType: "json",
                 contentType: "multipart/form-data",
                 processData: false,
