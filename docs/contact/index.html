@@ -41,7 +41,7 @@ textarea[id=body]{width: 100%;}
         </main>
         <script>
 
-            $("#submit-button").on("click", function(){
+            $("#submit-button").on("click", function(e){
                 e.preventDefault();
                 var action = $("#form").attr("action");
                 $.ajax({
