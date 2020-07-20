@@ -21,10 +21,10 @@ textarea[id=body]{width: 100%;}
             <div class="heading-box">
                 <h1>お問い合わせ</h1>
             </div>
-            <form id="form">
+            <form id="form" action="https://getform.io/f/92787548-342b-486d-872f-a6e88d14587d" method="POST">
             <div class="mail-box">
                 <label id="mail-label">メールアドレス</label>
-                <input type="email" id="email-input" placeholder="sample@example.com">
+                <input type="email" id="email-input" placeholder="sample@example.com" name="email">>
             </div>
 
             <div class="heading-box">
@@ -32,7 +32,7 @@ textarea[id=body]{width: 100%;}
             </div>
 
             <div class="text-field">
-                <textarea id="body" rows="5" placeholder="入力してください"></textarea>
+                <textarea id="body" rows="5" placeholder="入力してください" name="message"></textarea>
             </div>
 
             <div class="submit-button-box">
@@ -42,22 +42,4 @@ textarea[id=body]{width: 100%;}
         </main>
 
 
-        <script>
-            $("#submit-button").on("click", function(){
-                console.log("clicled!")
-                const url = 'https://hooks.slack.com/services/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';
-                const data = {
-                    email: $("#email-input").val(),
-                    message: $("#body").val()
-                };
-                $.ajax({
-                    type: 'POST',
-                    url:  url,
-                    data: `payload=${JSON.stringify(data)}`
-                }).then(function (data) {}, function (XMLHttpRequest, textStatus, errorThrown) {
  
-                console.log(XMLHttpRequest.error)
-                
-                } );
-            })
-        </script>
