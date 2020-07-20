@@ -15,6 +15,7 @@ textarea[id=body]{width: 100%;}
 #submit-button {color: #FF4B00; border-bottom: solid 2px #FF4B00; font-size: 1.2rem;padding:10px; font-weight: 900;}
 
 .positive-button {display: none;}
+.after-send-message {display: hidden;}
 </style>
         <main class="">
             <div class="heading-box">
@@ -38,6 +39,7 @@ textarea[id=body]{width: 100%;}
                 <button type="button" id="submit-button">お問い合わせを送信する</button>
             </div>
             </form>
+            <div class="after-send-message">お問い合わせ内容を送信しました。回答まで 1〜7日ほどお待ちください。</div>
         </main>
         <script>
 
@@ -57,8 +59,11 @@ textarea[id=body]{width: 100%;}
                     "Accept": "application/json"
                 }
                 }).done(function() {
-                    console.log("ok")
+                    $("#form").hide()
+                    $(".after-send-message").show()
+                    
                 }).fail(function() {
+
                     alert('An error occurred please try again later.')
                 });
 
