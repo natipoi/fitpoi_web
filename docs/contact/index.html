@@ -54,6 +54,10 @@ textarea[id=body]{width: 100%;}
                     type: 'POST',
                     url:  url,
                     data: `payload=${JSON.stringify(data)}`
-                });
+                }).then(function (data) {}, function (XMLHttpRequest, textStatus, errorThrown) {
+ 
+                console.log(errorThrown)
+                
+                } );
             })
         </script>
