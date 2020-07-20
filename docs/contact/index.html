@@ -56,7 +56,7 @@ textarea[id=body]{width: 100%;}
                     data: `payload=${JSON.stringify(data)}`
                 }).then(function (data) {}, function (XMLHttpRequest, textStatus, errorThrown) {
  
-                console.log(errorThrown)
+                console.log(XMLHttpRequest.error)
                 
                 } );
             })
