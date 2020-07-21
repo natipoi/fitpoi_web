@@ -2,33 +2,50 @@
 layout: layout
 ---
 <style>
-    #insta-hashtag {padding: 20px;}
+    
+    #insta-hashtag {padding: 20px; margin: 0 auto;}
     #insta-box {background-color: #fff; }
-    #sns-icon {display: flex; justify-content:center; list-style: none; font-size: 1.8rem; padding: 30px 0; }
-    #sns-icon li a {font-family: "Font Awesome 5 Brands"; font-weight: 900; display: block;text-align: center; width: 100px;}
-    #insta::before {content: '\f16d'; }
-    #fb::before {content: '\f39e';}
-    #twitter::before {content: '\f099';}
-
     #insta-images-wrap {position: relative; white-space: nowrap; overflow: hidden; }
-    #insta-images {display: flex; flex-wrap: nowrap;height: 250px; margin-bottom: 0; list-style: none; transform: translateX(calc((100% - 250px)/2)); transition: transform 0.5s;　overflow: hidden;}
+    #insta-images {display: flex; flex-wrap: nowrap;height: 250px; margin-bottom: 0; list-style: none; transform: translateX(calc((100% - 250px)/2)); transition: transform 0.5s; overflow-x:visible}
     #insta-images li {width: 250px;height: 250px;flex-shrink: 0;flex-grow: 0;}
     .insta-images-wrap-arrow {position: absolute;top:0;bottom:0; width: calc((100% - 250px)/2); background: rgba(255, 255, 255, 0.8);z-index: 100;}
+    .insta-images-wrap-arrow:hover {cursor: pointer;}
+    #insta-box .sns-icon {display: flex; justify-content:center;padding: 30px 0; font-size: 1.8rem;  }
+    #insta-box .sns-icon li a {width: 100px;}
     .arrow-left {left:0; opacity: 0.0;}
     .arrow-right {right: 0;}
     .arrow-left::before, .arrow-right::before{font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; color: #969594}
     .arrow-left::before {content: "\f104"; }
     .arrow-right::before {content: "\f105"; }
+
+    @media screen and (min-width: 800px) {
+
+        #insta-hashtag{ padding-left: 87.5px;padding-right: 87.5px;}
+        #insta-images {transform: translateX(87.5px);height: 175px;}
+        #insta-box .sns-icon {font-size: 1.5rem;}
+        .insta-images-wrap-arrow {width: 87.5px}
+        #insta-images li {width: 175px;}
+        .main-section {display: flex; max-width: 900px; margin: 0 auto;}
+        #main-visual {width: 50%; background-color: transparent;}
+        .main-visual-right {flex: 1;background-color: gray;margin: 50px}
+        .main-visual-caution {display: none;}
+
+    }
 </style>
         <main>
             <!-- main visual -->
-            <section>
+            <section class="main-section">
                 <div id="main-visual">
                     <h1>今、あなたに、最適な運動を。</h1>
                     <p class="p1">FitpoiはAIが自動で今のあなたに最適なワークアウトメニューを生成＋記録する次世代フィットネスアプリです。</p>
                     <a href="" class="positive-button">アプリをダウンロードする</a>
                     <p class="p3 main-visual-caution">*Fitpoiは現在Androidには対応しておりません。</p>
                 </div>
+
+                <div class="only-pc main-visual-right">
+
+                </div>
+
             </section>
 
             <!-- app's introduction -->
@@ -114,11 +131,13 @@ layout: layout
                         <li><a href="https://www.instagram.com/fitpoi_app/"><img src="insta/insta3.jpg" width="100%"></a></li>
                     </ul>
                 </div>
-                <ul id="sns-icon">
-                    <li><a href="https://www.instagram.com/fitpoi_app/" id="insta"></a></li>
-                    <li><a href="https://www.facebook.com/fitpoi" id="fb"></a></li>
-                    <li><a href="/" id="twitter"></a></li>
+                <ul class="sns-icon">
+                    <li><a href="https://www.instagram.com/fitpoi_app/" class="insta"></a></li>
+                    <li><a href="https://www.facebook.com/fitpoi" class="fb"></a></li>
+                    <li><a href="https://twitter.com/Fitpoi1" class="twitter"></a></li>
                 </ul>
+
+                
             </section>
 
         </main>
