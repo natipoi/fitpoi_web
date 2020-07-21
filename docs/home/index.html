@@ -18,7 +18,7 @@ layout: layout
     .arrow-left::before {content: "\f104"; }
     .arrow-right::before {content: "\f105"; }
 
-    @media screen and (min-width: 800px) {
+    @media screen and (min-width: 720px) {
 
         #insta-hashtag{ padding-left: 87.5px;padding-right: 87.5px;}
         #insta-images {transform: translateX(87.5px);height: 175px;}
@@ -137,25 +137,41 @@ layout: layout
                     <li><a href="https://twitter.com/Fitpoi1" class="twitter"></a></li>
                 </ul>
 
-                
             </section>
 
         </main>
         <script>
-            var now = 1
-            let imageNum = $("#insta-images").children().length
-            $(".tap-arrow").on("click", function(){
 
-                var attr = $(this).attr("attr")
-                if (attr === "left"){
-                    if (now === imageNum ){
-                        $('.arrow-right').css("opacity", "1.0")
-                    }
-                } else {
-                    if (now === 1 ){
-                        $('.arrow-left').css("opacity", "1.0");
-                    }
+
+
+
+            
+            let imageNum = $("#insta-images").children().length
+            var windowWidth = $(window).width()
+            var now = 1
+
+            var beforeresize = $(window).width()
+            $(window).resize(function(){
+                windowWidth = $(window).width()
+                if (windowWidth >= 720 && beforeresize < 720) {
+                    $("#insta-images").css("transform", "translateX(87.5px)");
+                    now = 1
+                    $('.arrow-left').css("opacity", "0.0");
+                    $('.arrow-right').css("opacity", "1.0");
+                } else if (windowWidth < 720 && beforeresize >= 720)  {
+                    $("#insta-images").css("transform", "translateX(calc((100% - 250px)/2))");
+                    now = 1
+                    $('.arrow-left').css("opacity", "0.0");
+                    $('.arrow-right').css("opacity", "1.0");
+
                 }
+                beforeresize = windowWidth
+            })
+
+            $(".tap-arrow").on("click", function(){
+                console.log(now)
+                var attr = $(this).attr("attr")
+                
 
                 var nowPosi = $("#insta-images").css("transform")
                 nowPosi = nowPosi.split('(')[1];
@@ -165,9 +181,12 @@ layout: layout
 
                 x = attr === "right" ? - (instaWidth - parseInt(x)): instaWidth + parseInt(x);
                 var slide = true
-                if (attr === "right" && now === imageNum) {
+        
+                if (attr === "right" && 
+                ((windowWidth >= 720 && now === imageNum - 2) || 
+                (windowWidth < 720 && now === imageNum))) {
                     slide = false
-                } else if (attr === "left" && now === 1) {
+                } else if (attr === "left" &&  now === 1) {
                     slide = false
                 }
                 if (slide) {
@@ -175,14 +194,21 @@ layout: layout
                         transform: `translateX(${x}px)`
                     })
                     if (attr === "right"){
-                        now += 1
-                        if (now === imageNum ){
-                           $('.arrow-right').css("opacity", "0.0");
+                        now = windowWidth >= 720 ? now + 3 : now + 1;
+                        if ((windowWidth >= 720 && now === imageNum * 3 + 1) || (windowWidth < 720 && now === imageNum)){
+                            $('.arrow-right').css("opacity", "0.0");
+                        }
+                        if (now !== 1 ){
+                            $('.arrow-left').css("opacity", "1.0");
                         }
                     } else {
-                        now -= 1
+                        now = windowWidth >= 720 ? now - 3 : now - 1;
                         if (now === 1 ){
                            $('.arrow-left').css("opacity", "0.0");
+                        }
+                        if ((windowWidth >= 720 && now !== imageNum * 3 + 1) || 
+                        (windowWidth < 720 && now !== imageNum)){
+                            $('.arrow-right').css("opacity", "1.0")
                         }
                     }
                     
