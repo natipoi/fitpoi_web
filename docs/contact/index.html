@@ -4,15 +4,17 @@ layout: layout
 <style>
 
 h2 {margin-bottom: 10px;}
-input, textarea, button {border-style: none;outline: none;}
+input, textarea, button {border-style: none;outline: none;resize: none;}
 .heading-box {margin: 0 30px;}
-.mail-box {background-color: #fff; padding: 20px; display: flex;margin-bottom: 30px;}
+.main-contact {margin: 0 auto; max-width: 700px;}
+.mail-box {background-color: #fff; padding: 20px; margin-bottom: 30px;}
 #mail-label {width: 30%; margin-right: 10px;}
-input[type=email] {flex: 1; text-align: right;}
+/* input[type=email] {flex: 1;} */
 .text-field {background-color: #fff; padding: 20px; margin-bottom: 30px;}
 textarea[id=body]{width: 100%;}
 .submit-button-box {text-align: center;}
 #submit-button {color: #FF4B00; border-bottom: solid 2px #FF4B00; font-size: 1.2rem;padding:10px; font-weight: 900;}
+
 
 .positive-button {display: none;}
 .after-send-message {display: none;margin: 0 30px;}
@@ -90,24 +92,37 @@ textarea[id=body]{width: 100%;}
     box-shadow: 0em -2.6em 0em 0em rgba(255, 75, 0, 0.2), 1.8em -1.8em 0 0em rgba(255, 75, 0, 0.2), 2.5em 0em 0 0em rgba(255, 75, 0, 0.2), 1.75em 1.75em 0 0em rgba(255, 75, 0, 0.2), 0em 2.5em 0 0em rgba(255, 75, 0, 0.2), -1.8em 1.8em 0 0em rgba(255, 75, 0, 0.5), -2.6em 0em 0 0em rgba(255, 75, 0, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+@media screen and (min-width: 720px) {
+    .form-box {display: flex;}
+    .form-box .heading-box {width: 20%;}
+    .form-box h2 {font-size: 1.0rem;}
+    .text-field {flex: 1;}
+    .heading-box {margin: 0}
+}
 </style>
-        <main class="main-box">
+        <main class="main-contact">
             <div class="overlay"><div class="loader"></div></div>
             <div class="heading-box">
                 <h1>お問い合わせ</h1>
             </div>
             <form id="form" action="https://getform.io/f/92787548-342b-486d-872f-a6e88d14587d" method="POST">
-            <div class="mail-box">
-                <label id="mail-label">メールアドレス</label>
+            <div class="form-box">
+                <div class="heading-box">
+                <h2>メールアドレス</h2>
+            </div>
+            <div class="mail-box text-field">
+                <!-- <label id="mail-label">メールアドレス</label> -->
                 <input type="email" id="email-input" placeholder="sample@example.com" name="email">
             </div>
-
+            </div>
+            <div class="form-box">
             <div class="heading-box">
                 <h2>お問い合わせ内容</h2>
             </div>
 
             <div class="text-field">
-                <textarea id="body" rows="5" placeholder="入力してください" name="message"></textarea>
+                <textarea id="body" rows="10" placeholder="入力してください" name="message"></textarea>
+            </div>
             </div>
 
             <div class="submit-button-box">
@@ -148,7 +163,6 @@ textarea[id=body]{width: 100%;}
                 });
 
             })
-
 
         </script>
 

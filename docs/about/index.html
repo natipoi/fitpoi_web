@@ -3,34 +3,41 @@ layout: layout
 ---
 <style>
 .hr {margin: 25px 0; width: 15%;}
+@media screen and (min-width: 700px) {
+.hr {display: none;}
+.info-box {display: flex; margin-bottom: 20px}
+.info-box h2 {width: 30%;}
+.info-box p {flex: 1}
+
+}
 </style>
         <main class="main">
 
-            <div>
+            <div class="info-box">
                 <h1>運営会社</h1>
             </div>
 
-            <div>
+            <div class="info-box">
                 <h2>会社名</h2>
                 <p class="p1-m0">株式会社Fitpoi （フィットポイ）</p>
             </div>
             <hr class="hr">
-            <div>
+            <div class="info-box">
                 <h2>代表者</h2>
                 <p class="p1-m0">遠山 晋作</p>
             </div>
             <hr class="hr">
-            <div>
+            <div class="info-box">
                 <h2>所在地</h2>
                 <p class="p1-m0">〒164-0003 東京都中野区東中野3-19-18</p>
             </div>
             <hr class="hr">
-            <div>
+            <div class="info-box">
                 <h2>資本金</h2>
                 <p class="p1-m0">3,000,000円</p>
             </div>
             <hr class="hr">
-            <div>
+            <div class="info-box">
                 <h2>電話番号</h2>
                 <p class="p1-m0">03-xxxx-xxxx</p>
             </div>
